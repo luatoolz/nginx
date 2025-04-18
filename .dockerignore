@@ -1,0 +1,14 @@
+.git*
+*.env
+.backup
+.test
+.sample
+.keys
+*.md
+.gitlab-ci.yml
+*.yml
+[Mm]akefile
+*.mk
+*.resty
+resty.*
+doc

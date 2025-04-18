@@ -1,0 +1,27 @@
+  server {
+    listen 80;
+		listen 443 ssl default_server;
+    server_name _;
+    client_max_body_size 0;
+    chunked_transfer_encoding on;
+    include ssl.conf;
+
+    location = /favicon.ico { log_not_found off; }
+    location = /robots.txt { log_not_found off; }
+    location = /ping {
+      default_type text/plain;
+      log_not_found off;
+      access_log /dev/null;
+      return 200;
+    }
+
+    include error.conf;
+    location / {
+      default_type text/html;
+      try_files $uri =404;
+    }
+    location = / {
+      default_type text/html;
+      return 200 "";
+    }
+	}

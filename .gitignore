@@ -1,0 +1,7 @@
+*.env
+.backup
+.test
+.sample
+.keys
+[Mm]akefile
+*.yml
