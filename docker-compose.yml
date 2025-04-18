@@ -1,0 +1,17 @@
+services:
+  nginx:
+    image: luatoolz/nginx
+    build: .
+    restart: always
+    read_only: true
+    hostname: nginx
+    ports:
+      - 8088:80
+      - 4438:443
+    volumes:
+      - /etc/keys
+      - /var/tmp
+      - /var/www
+    tmpfs:
+      - /tmp:size=128M,uid=65534,gid=65533,mode=1777
+      - /run:size=128M,uid=65534,gid=65533,mode=1777
