@@ -4,10 +4,9 @@ services:
     build: .
     restart: always
     read_only: true
-    hostname: nginx
     ports:
-      - 8088:80
-      - 4438:443
+      - ${http_port}:80
+      - ${https_port}:443
     volumes:
       - /etc/keys
       - /var/tmp

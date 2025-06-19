@@ -3,11 +3,6 @@
 docker pull luatoolz/nginx
 ```
 
-Why? I just have tons of similar but very different apps, builds, images, etc.
-So i'd like to try a 'crumb'-way nginxing. At least i didn't find any good way out there.
-
-Hope to get simple, self-bootstrapped and reusable with minimal time overhead.
-
 # docker.compose.yml
 ```yml
 services:
@@ -18,8 +13,8 @@ services:
     read_only: true
     hostname: nginx
     ports:
-      - 8088:80
-      - 4438:443
+      - 80:80
+      - 443:443
     volumes:
       - /etc/keys
       - /var/tmp
@@ -38,10 +33,4 @@ services:
   - jit/luarocks with support of:
   - openssl, resolver, acme, psl, net, utf8
   - read-only ok
-
-# status
-There is still more refactoring than progress but usable.
-
-# todo
-* auto ssl from [letsencrypt.com](https://letsencrypt.com)
-* better code, more working samples
+  - autossl
