@@ -1,4 +1,3 @@
-# ** syntax=docker/dockerfile:1
 ARG SOURCE_DATE_EPOCH=${SOURCE_DATE_EPOCH:-0}
 ARG LUA_VERSION=${LUA_VERSION:-5.1}
 
@@ -10,13 +9,15 @@ ARG itools="ca-certificates curl iputils-ping bash bind-tools procps sudo net-to
 ARG idev="build-base gcc git cmake make pkgconf"
 ARG ilib="luarocks luajit lua${LUA_VERSION} openssl     zlib     libbson-static libmaxminddb libmaxminddb-libs mongo-c-driver-static"
 ARG iheaders="lua${LUA_VERSION}-dev lua-dev openssl-dev zlib-dev libidn2-dev    libmaxminddb-dev"
-ARG iserv="nginx nginx-mod-http-lua nginx-mod-http-echo nginx-mod-http-set-misc"
+ARG iserv="nginx nginx-mod-http-lua nginx-mod-http-echo nginx-mod-http-set-misc nginx-mod-http-headers-more nginx-mod-stream nginx-mod-stream-keyval nginx-mod-http-keyval"
 
 RUN apk upgrade --no-cache && apk add --no-cache ${itools} ${idev} ${ilib} ${iheaders} ${iserv}
 
 RUN rm -rf /var/lib/nginx/tmp /var/www/localhost && \
     mkdir -p /etc/keys /etc/nginx/env.d /etc/nginx/http.d /etc/nginx/stream.d && \
-    ln -s /var/tmp /var/lib/nginx/tmp && \
+    ln -s /tmp /var/lib/nginx/tmp && \
+    ln -s /tmp /var/tmp && \
+    ln -s /var/run /run && \
     touch /var/log/nginx/error.log && \
     chown nginx /etc/keys /etc/nginx/env.d /etc/nginx/http.d /etc/nginx/stream.d /var/log/nginx/error.log /var/www && \
     truncate -s 0 /var/lib/nginx/html/index.html

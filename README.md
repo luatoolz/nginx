@@ -17,7 +17,6 @@ services:
       - 443:443
     volumes:
       - /etc/keys
-      - /var/tmp
       - /var/www
     tmpfs:
       - /tmp:size=128M,uid=65534,gid=65533,mode=1777

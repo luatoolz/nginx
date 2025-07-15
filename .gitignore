@@ -1,7 +1,2 @@
 *.env
-.backup
-.test
-.sample
-.keys
 [Mm]akefile
-doc
